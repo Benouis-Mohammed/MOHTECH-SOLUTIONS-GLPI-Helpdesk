@@ -282,8 +282,6 @@ A task was added to record the troubleshooting activity.
 
 > Investigated the reported Wi-Fi connectivity issue. Checked the laptop's network adapter and confirmed that further network troubleshooting is required.
 
-![Ticket Management - Administrator View](Ticket-solved-admin.png)
-
 ## 5.3 Solution & Ticket Closure
 
 After troubleshooting, a solution was added to the ticket.
@@ -321,7 +319,13 @@ Employee approves solution
 Ticket closed
 ```
 
+### Closed Ticket
+
+The completed ticket can be viewed from both the employee and administrator interfaces.
+
 ![Resolved Ticket](Ticket-solved.png)
+
+![Resolved Ticket - Administrator View](Ticket-solved-admin.png)
 
 ---
 
