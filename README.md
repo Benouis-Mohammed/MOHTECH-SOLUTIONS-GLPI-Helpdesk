@@ -13,39 +13,27 @@
 
 ## Overview
 
-A hands-on IT infrastructure project focused on deploying and configuring **GLPI**, an open-source IT Service Management (ITSM), helpdesk, and IT asset management platform.
+I built this project to get hands-on experience deploying and managing a helpdesk system using GLPI.
 
-Built around the MOHTECH Solutions company scenario, this project demonstrates the deployment of a Linux-hosted helpdesk environment and the configuration of common IT support workflows.
+I started by setting up an Ubuntu virtual machine in VMware Workstation, installing the required web server and database components, and deploying GLPI. Once everything was running, I configured departments, created user accounts, added company equipment to the inventory, and tested the ticketing workflow.
 
-The implementation covers:
-
-- Ubuntu Linux environment preparation.
-- Apache2 web server configuration.
-- MariaDB database deployment.
-- PHP installation and configuration.
-- GLPI deployment and installation.
-- Organizational structure and user management.
-- IT asset inventory.
-- Ticket categorization and incident management.
-- Complete support ticket resolution workflow.
-
-The objective was to build a functional helpdesk environment reflecting the practical responsibilities of an organization's IT support department.
+The project is based on a MOHTECH Solutions company scenario and focuses on tasks commonly handled by an IT support team.
 
 ## Technology Stack
 
 | Technology | Purpose |
 |---|---|
-| Ubuntu Desktop 24.04.5 LTS | Linux environment hosting GLPI |
-| GLPI 12.0.2 | Helpdesk and IT asset management |
+| Ubuntu Desktop 24.04.5 LTS | Operating system |
+| GLPI 12.0.2 | Helpdesk and asset management |
 | Apache2 | Web server |
 | PHP 8.3.6 | Application runtime |
-| MariaDB 10.11.14 | Relational database |
+| MariaDB 10.11.14 | Database |
 | VMware Workstation | Virtualization |
 | Bridged Networking | Network connectivity |
 
 ## Infrastructure Architecture
 
-GLPI runs on an Ubuntu virtual machine. Apache2 handles web requests, PHP executes the application, and MariaDB stores application data.
+I deployed GLPI on an Ubuntu virtual machine. Apache2 handles incoming web requests, PHP runs the application, and MariaDB stores its data.
 
 ```text
              MOHTECH SOLUTIONS
@@ -68,35 +56,35 @@ GLPI runs on an Ubuntu virtual machine. Apache2 handles web requests, PHP execut
 
 # 1. Linux Environment & Server Deployment
 
-Prepared an Ubuntu Desktop 24.04.5 LTS virtual machine using VMware Workstation.
+I created an Ubuntu Desktop 24.04.5 LTS virtual machine using VMware Workstation.
 
-The network adapter was configured using bridged networking to allow the virtual machine to communicate with devices on the local network.
+I configured its network adapter in bridged mode so the VM could communicate with devices on my local network.
 
 ## 1.1 Apache2 Web Server
 
-Installed Apache2 to host the GLPI web application and verified that the web server was operational by accessing its default page.
+I installed Apache2 to host GLPI and checked that it was working by accessing the default Apache page.
 
 ![Apache2 Default Page](Apache2-DefaultPage.png)
 
-Configured Apache2 with a dedicated VirtualHost for GLPI.
+I then configured a dedicated Apache VirtualHost for GLPI.
 
-The application was configured to use the following document root:
+I set the DocumentRoot to:
 
 `/var/www/glpi/public`
 
-This ensures that Apache serves the public application directory rather than exposing the entire GLPI installation directory.
+This points Apache to GLPI's public directory instead of exposing the entire application directory.
 
 ## 1.2 Web Server and Database Services
 
-Installed MariaDB as the database server required by GLPI.
+I installed MariaDB to provide the database required by GLPI.
 
-Verified that both Apache2 and MariaDB services were running correctly.
+I checked that both Apache2 and MariaDB services were running.
 
 ![Apache2 and MariaDB Services](mariadb-apache2-running.png)
 
 ## 1.3 MariaDB Database Configuration
 
-Created a dedicated MariaDB database for the GLPI application.
+I created a dedicated database and user for the GLPI installation.
 
 | Setting | Value |
 |---|---|
@@ -105,7 +93,7 @@ Created a dedicated MariaDB database for the GLPI application.
 | Database User | `glpi_user` |
 | Purpose | GLPI application data |
 
-Verified the database through the MariaDB command-line interface.
+I verified that the database had been created successfully.
 
 ![GLPI Database Created](Show_databases-glpiCreated.png)
 
@@ -113,51 +101,49 @@ Database credentials are not included in this repository.
 
 ## 1.4 PHP Installation
 
-Installed PHP 8.3.6 along with the extensions required by GLPI.
+I installed PHP 8.3.6 along with the extensions required by GLPI.
 
-Verified the installed PHP version before proceeding with the application deployment.
+I checked the installed PHP version before continuing with the deployment.
 
 ![PHP Version](PHP-version.png)
 
 ## 1.5 GLPI Application Deployment
 
-Downloaded and extracted GLPI 12.0.2 into the application directory:
+I downloaded and extracted GLPI 12.0.2 into:
 
 `/var/www/glpi`
 
 ![GLPI Extracted Files](Glpi-Extracted.png)
 
-Configured application directory ownership and permissions for the Apache service account (`www-data`).
-
-This allows Apache to access the required GLPI configuration and storage directories.
+I configured the directory ownership and permissions for Apache's service account, `www-data`, so the web server could access the required GLPI files and directories.
 
 ![GLPI Directory Permissions](gave_gpiperms-2apache.png)
 
 ## 1.6 Apache VirtualHost & Local Access
 
-Configured the Apache VirtualHost to serve GLPI through its public directory.
+I configured the Apache VirtualHost to serve GLPI through its public directory.
 
-Accessed the application through the local web interface to verify the Apache configuration.
+I then accessed the application locally to check that the web server configuration was working.
 
 ![GLPI Localhost](GLPI-inLocalHost-done.png)
 
 ## 1.7 GLPI Installation
 
-Completed the GLPI installation process and checked the environment requirements before connecting the application to MariaDB.
+I opened the GLPI installer and checked that the required environment checks were passing before connecting it to MariaDB.
 
 ![GLPI Installation Checks](Glpi-passed-initialTest.png)
 
-Connected GLPI to the previously created database and completed the installation.
+I connected GLPI to the database I had created and completed the installation.
 
 ![GLPI Installation Finished](glpi-install-finished.png)
 
 ## 1.8 GLPI Login & Dashboard
 
-After installation, accessed the GLPI login interface and verified that the application was available.
+After completing the installation, I accessed the GLPI login page.
 
 ![GLPI Login Page](glpi-login-page.png)
 
-Successfully accessed the GLPI dashboard.
+I logged in successfully and reached the GLPI dashboard.
 
 ![GLPI Initial Dashboard](Glpi-initial-dashboard.png)
 
@@ -165,11 +151,11 @@ Successfully accessed the GLPI dashboard.
 
 # 2. Organizational Structure & User Management
 
-Configured GLPI to represent the organizational structure of MOHTECH Solutions.
+I configured the organizational structure in GLPI to represent the different departments at MOHTECH Solutions.
 
 ## 2.1 Locations and Departments
 
-Created a location hierarchy to organize employees and company equipment.
+I created a location hierarchy under the Main Office:
 
 ```text
 Main Office
@@ -181,29 +167,29 @@ Main Office
 |-- Sales Department
 ```
 
-Configured the locations and departments within GLPI.
+I used these locations when assigning users and equipment.
 
 ![Created Locations and Departments](Created-locations-departments.png)
 
 ## 2.2 User Accounts
 
-Created three user accounts representing employees from different departments and an IT technician responsible for handling support requests.
+I created three accounts for the HR, Sales, and IT departments.
 
 | Username | Name shown in GLPI | Email | Department | Access |
 |---|---|---|---|---|
 | `youcef.hr` | Benouis | `benouisyoucef.hr@mohtechsolutions.com` | HR | Self-Service |
 | `youness.sales` | Mansour | `mansouryouness.sales@mohtechsolutions.com` | Sales | Self-Service |
-| `ahmed.it` | Khalil | `khalilahmed.it@mohtechsolutions.com` | IT | Hotliner profile with additional Technician authorization |
+| `ahmed.it` | Khalil | `khalilahmed.it@mohtechsolutions.com` | IT | Hotliner + Technician authorization |
 
-Configured user accounts, departmental locations, and the appropriate access authorizations.
+I assigned each account to its department and configured the appropriate access.
 
 ![GLPI Users Created](Users-created.png)
 
 ## 2.3 Employee Self-Service Access
 
-Verified that an HR employee could log in through the GLPI Self-Service interface.
+I logged in using the HR employee account to check the Self-Service interface.
 
-This allows employees to submit and track support requests without requiring access to the IT administration interface.
+Employees can use this interface to submit and follow up on their support requests without accessing the IT administration interface.
 
 ![HR Employee Login](LoggedIn-as-hr.png)
 
@@ -211,19 +197,19 @@ This allows employees to submit and track support requests without requiring acc
 
 # 3. IT Asset Management
 
-Configured the GLPI asset inventory to track company equipment and associate assets with their respective users and departments.
+I added company equipment to the GLPI inventory and associated each asset with its department and assigned user.
 
-Registered three computers and one printer.
+The inventory contains three computers and one printer.
 
 ## 3.1 Computer Registration
 
-Added the company's computer assets to GLPI and associated them with the appropriate employees and departments.
+I registered the computers and assigned them to the appropriate employees.
 
 ![Computers Added](Added-Computers.png)
 
 ## 3.2 Complete Asset Inventory
 
-The completed inventory contains the following assets:
+Here is the inventory after adding all four assets.
 
 | Asset | Location | Assigned User | Asset ID |
 |---|---|---|---|
@@ -240,17 +226,13 @@ The completed inventory contains the following assets:
 | Printers | 1 |
 | **Total Assets** | **4** |
 
-The inventory provides the IT department with a centralized view of registered equipment and its associated users and locations.
-
 ![Complete GLPI Inventory](Inventory-3c1p.png)
 
 ---
 
 # 4. IT Ticket Categories
 
-Created ticket categories to classify and organize incoming support requests.
-
-The categories cover common IT support areas.
+I created five ticket categories to organize incoming support requests.
 
 | Category | Code | Description |
 |---|---|---|
@@ -260,21 +242,17 @@ The categories cover common IT support areas.
 | Accounts & Access | ACC | User accounts and access issues |
 | Printers | PRN | Printer and printing problems |
 
-Configured these categories within GLPI to provide a consistent classification structure for incoming incidents.
-
 ![GLPI Ticket Categories](ITtickets-categories-created.png)
 
 ---
 
 # 5. Helpdesk & Incident Management
 
-Configured and tested a complete support ticket workflow using an employee account and the IT technician account.
-
-The workflow demonstrates incident submission, assignment, troubleshooting documentation, solution approval, and ticket closure.
+After configuring the users, assets, and ticket categories, I tested the helpdesk workflow using the HR employee account and the IT technician account.
 
 ## 5.1 Employee Incident Submission
 
-Youcef (`youcef.hr`), an HR employee, submitted a network connectivity incident through the GLPI Self-Service interface.
+I logged in as Youcef (`youcef.hr`) and submitted a network incident through the Self-Service interface.
 
 ### Ticket Details
 
@@ -292,35 +270,31 @@ Youcef (`youcef.hr`), an HR employee, submitted a network connectivity incident 
 
 > My HR laptop cannot connect to the office Wi-Fi. Other employees appear to be connected normally. Please investigate.
 
-The incident was categorized as a Network issue and associated with Youcef's assigned laptop.
+I associated the ticket with Youcef's laptop and assigned it to Ahmed for investigation.
 
 ![First Ticket Submitted](First-ticket.png)
 
 ## 5.2 Technician Assignment & Investigation
 
-The incident was assigned to Ahmed (`ahmed.it`) for investigation.
+I switched to the IT technician account and handled the assigned ticket.
 
-A task was added to document the troubleshooting activity directly within the ticket.
+I added a task to document the troubleshooting activity.
 
 ### Troubleshooting Activity
 
 > Investigated the reported Wi-Fi connectivity issue. Checked the laptop's network adapter and confirmed that further network troubleshooting is required.
 
-This provides a record of the investigation and the work performed by the IT technician.
-
 ![Ticket Management - Administrator View](Ticket-solved-admin.png)
 
 ## 5.3 Solution & Ticket Closure
 
-After troubleshooting, a solution was added to the ticket.
+After troubleshooting, I added a solution to the ticket.
 
 ### Documented Solution
 
 > Wi-Fi connectivity was restored after troubleshooting the laptop's network connection. Youcef can now connect to the office network successfully.
 
-Youcef reviewed and approved the proposed solution.
-
-The ticket subsequently reached **Closed** status.
+I then logged back in as the employee, reviewed the proposed solution, and approved it. The ticket reached **Closed** status.
 
 ### Ticket Lifecycle
 
@@ -389,22 +363,3 @@ Ticket closed
 - Bridged networking configuration.
 - Linux-hosted application deployment.
 - Integration of Apache2, PHP, and MariaDB.
-
----
-
-## Project Summary
-
-Successfully deployed and configured a GLPI 12.0.2 helpdesk environment on Ubuntu Linux using Apache2, PHP, and MariaDB.
-
-The implementation includes:
-
-- Linux-hosted GLPI deployment.
-- Apache2 VirtualHost configuration.
-- MariaDB database setup.
-- Three employee and IT technician accounts.
-- Departmental locations.
-- Inventory of three computers and one printer.
-- Five IT ticket categories.
-- A complete incident workflow from employee submission through technician investigation, solution approval, and closure.
-
-This project demonstrates practical experience across **IT support, Linux administration, web server deployment, database configuration, and IT asset management**.
