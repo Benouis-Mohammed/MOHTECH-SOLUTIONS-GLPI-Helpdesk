@@ -392,20 +392,6 @@ Ticket closed
 
 ---
 
-# 7. Future Improvements
-
-Potential extensions to expand the environment:
-
-- **Active Directory / LDAP Integration:** Connect GLPI to the existing MOHTECH Active Directory environment for centralized authentication and directory synchronization.
-- **GLPI Agent:** Explore automated hardware and software inventory collection.
-- **Expanded Asset Inventory:** Add network equipment, peripherals, and additional workstations.
-- **Additional Ticket Scenarios:** Simulate hardware failures, software issues, account lockouts, and printer incidents.
-- **Monitoring Integration:** Explore connecting infrastructure monitoring alerts from PRTG with helpdesk workflows.
-
-These are potential enhancements and are not part of the current implementation.
-
----
-
 ## Project Summary
 
 Successfully deployed and configured a GLPI 12.0.2 helpdesk environment on Ubuntu Linux using Apache2, PHP, and MariaDB.
